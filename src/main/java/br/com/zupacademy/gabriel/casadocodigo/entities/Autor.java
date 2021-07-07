@@ -3,11 +3,13 @@ package br.com.zupacademy.gabriel.casadocodigo.entities;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -23,6 +25,8 @@ public class Autor implements Serializable {
 	private Long id;
 	@NotBlank(message = "Nome Obrigatório")
 	private String nome;
+	@Column(unique = true)
+	@Email(message = "Email inválido!")
 	@NotBlank(message = "Email Obrigatório")
 	private String email;
 	@Size(max = 400, message = "Tamanho maximo de 400 caracteres")
