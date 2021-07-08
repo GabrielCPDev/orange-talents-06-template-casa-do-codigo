@@ -4,7 +4,9 @@ import javax.persistence.Column;
 import javax.validation.constraints.NotBlank;
 
 import br.com.zupacademy.gabriel.casadocodigo.entities.Categoria;
+import br.com.zupacademy.gabriel.casadocodigo.resources.validation.CategoriaInsert;
 
+@CategoriaInsert
 public class CategoriaDTO {
 
 	private Long id;
