@@ -32,6 +32,7 @@ public class Autor implements Serializable {
 	@Size(max = 400, message = "Tamanho maximo de 400 caracteres")
 	@NotBlank(message = "Email Obrigatório")
 	private String descricao;
+	
 	public void setInstante(LocalDateTime instante) {
 		this.instante = instante;
 	}
