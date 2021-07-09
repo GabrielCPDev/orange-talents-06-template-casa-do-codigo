@@ -2,18 +2,22 @@ package br.com.zupacademy.gabriel.casadocodigo.entities;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-
-import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 @Table(name = "tb_autores")
@@ -32,11 +36,8 @@ public class Autor implements Serializable {
 	@Size(max = 400, message = "Tamanho maximo de 400 caracteres")
 	@NotBlank(message = "Email Obrigatório")
 	private String descricao;
-	
-	public void setInstante(LocalDateTime instante) {
-		this.instante = instante;
-	}
-
+	@OneToMany(mappedBy = "autor", cascade = CascadeType.PERSIST)
+	private Set<Livro> livros = new HashSet<Livro>();
 	private LocalDateTime instante;
 	
 	private Autor () {
@@ -79,6 +80,19 @@ public class Autor implements Serializable {
 	public LocalDateTime getInstante() {
 		return instante;
 	}
+	
+	public Set<Livro> getLivros() {
+		return livros;
+	}
+
+	public void setLivros(Set<Livro> livros) {
+		this.livros = livros;
+	}
+
+	public void setInstante(LocalDateTime instante) {
+		this.instante = instante;
+	}
+
 
 	@Override
 	public int hashCode() {
