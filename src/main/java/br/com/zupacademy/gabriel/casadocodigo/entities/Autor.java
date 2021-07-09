@@ -10,6 +10,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,6 +19,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "tb_autores")
@@ -36,7 +39,8 @@ public class Autor implements Serializable {
 	@Size(max = 400, message = "Tamanho maximo de 400 caracteres")
 	@NotBlank(message = "Email Obrigatório")
 	private String descricao;
-	@OneToMany(mappedBy = "autor", cascade = CascadeType.PERSIST)
+	@JsonIgnore
+	@OneToMany(mappedBy = "autor", cascade = CascadeType.PERSIST, fetch =  FetchType.EAGER)
 	private Set<Livro> livros = new HashSet<Livro>();
 	private LocalDateTime instante;
 	

@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,6 +22,8 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.Range;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "tb_livros")
@@ -49,9 +52,11 @@ public class Livro implements Serializable {
 	private Long isbn;
 	@FutureOrPresent(message = "Não é possível inserir uma data passada!")
 	private LocalDate lancamento;
-	@NotNull(message = "Campo obrigatório!")	
+	@NotNull(message = "Campo obrigatório!")
+	@JsonIgnore
 	@ManyToOne
 	private Categoria categoria;
+	@JsonIgnore
 	@NotNull(message = "Campo obrigatório!")
 	@ManyToOne
 	private Autor autor;
