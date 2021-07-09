@@ -1,21 +1,25 @@
 package br.com.zupacademy.gabriel.casadocodigo.dtos;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.Range;
 
 import br.com.zupacademy.gabriel.casadocodigo.entities.Autor;
 import br.com.zupacademy.gabriel.casadocodigo.entities.Categoria;
 import br.com.zupacademy.gabriel.casadocodigo.entities.Livro;
 
-public class LivroDTO {
+public class LivroDTO implements Serializable {
+	private static final long serialVersionUID = 1L;
 	
 	private Long id;
 	@NotBlank(message = "O título do livro é obrigatório!")
@@ -26,13 +30,13 @@ public class LivroDTO {
 	private String resumo;
 	@NotBlank(message = "Campo obrigatório!")
 	private String sumario;
-	@NotBlank(message = "Campo obrigatório!")
-	@Size(min = 20, message = "Preço mínimo é de R$ 20.0")
+	@NotNull(message = "Campo obrigatório!")
+	@Range(min = 20, message = "Preço mínimo é de R$ 20.0")
 	private Double preco;
-	@NotBlank(message = "Campo obrigatório!")
-	@Size(min = 100, message = "O livro deve conter no mínimo 100 páginas!")
+	@NotNull(message = "Campo obrigatório!")
+	@Range(min = 100, message = "O livro deve conter no mínimo 100 páginas!")
 	private Integer numeroDePaginas;
-	@NotBlank(message = "Campo obrigatório!")
+	@NotNull(message = "Campo obrigatório!")
 	@Column(unique = true)
 	private Long isbn;
 	@FutureOrPresent(message = "Não é possível inserir uma data passada!")

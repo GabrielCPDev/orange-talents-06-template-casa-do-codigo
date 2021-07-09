@@ -20,6 +20,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.Range;
 
 @Entity
 @Table(name = "tb_livros")
@@ -37,13 +38,13 @@ public class Livro implements Serializable {
 	private String resumo;
 	@NotBlank(message = "Campo obrigatório!")
 	private String sumario;
-	@NotBlank(message = "Campo obrigatório!")
-	@Size(min = 20, message = "Preço mínimo é de R$ 20.0")
+	@NotNull(message = "Campo obrigatório!")
+	@Range(min = 20, message = "Preço mínimo é de R$ 20.0")
 	private Double preco;
-	@NotBlank(message = "Campo obrigatório!")
-	@Size(min = 100, message = "O livro deve conter no mínimo 100 páginas!")
+	@NotNull(message = "Campo obrigatório!")
+	@Range(min = 100, message = "O livro deve conter no mínimo 100 páginas!")
 	private Integer numeroDePaginas;
-	@NotBlank(message = "Campo obrigatório!")
+	@NotNull(message = "Campo obrigatório!")
 	@Column(unique = true)
 	private Long isbn;
 	@FutureOrPresent(message = "Não é possível inserir uma data passada!")

@@ -1,5 +1,7 @@
 package br.com.zupacademy.gabriel.casadocodigo.dtos;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.validation.constraints.NotBlank;
 
@@ -7,7 +9,8 @@ import br.com.zupacademy.gabriel.casadocodigo.entities.Categoria;
 import br.com.zupacademy.gabriel.casadocodigo.resources.validation.CategoriaInsert;
 
 @CategoriaInsert
-public class CategoriaDTO {
+public class CategoriaDTO implements Serializable {
+	private static final long serialVersionUID = 1L;
 
 	private Long id;
 	@NotBlank(message = "Campo nome é obrigatório")

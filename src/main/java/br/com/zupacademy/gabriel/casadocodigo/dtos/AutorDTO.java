@@ -1,5 +1,6 @@
 package br.com.zupacademy.gabriel.casadocodigo.dtos;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,8 +13,9 @@ import javax.validation.constraints.Size;
 
 import br.com.zupacademy.gabriel.casadocodigo.entities.Autor;
 
-public class AutorDTO {
-
+public class AutorDTO implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 	private Long id;
 	@NotBlank(message = "Nome Obrigatório")
 	private String nome;
